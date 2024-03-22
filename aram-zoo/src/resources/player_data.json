@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "name": "Pistachio",
+        "champions": ["Ashe","Mordekaiser","Ziggs","Lux","Smolder","Lulu","Soraka"]
+    },
+    {
+        "id": 2,
+        "name": "RipRydah",
+        "champions": ["Tryndamere","Nocturne","Caitlyn","XinZhao","JarvanIV","Jax"]
+    }
+]

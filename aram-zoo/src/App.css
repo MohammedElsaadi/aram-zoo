@@ -1,0 +1,37 @@
+.AppContainer {
+  text-align: center;
+  background-color: tomato;
+  height: 100%;
+}
+
+.team {
+  float: left;
+  width: 50%;
+}
+
+.players {
+  float: left;
+  width: 100%;
+}
+
+.pools {
+  float: left;
+  width: 50%;
+}
+
+.PlayerCard {
+  /* width: 20%;
+  height: 10%; */
+
+  button{
+    margin: 1rem;
+  }
+}
+
+.card {
+}
+
+.generateContainer {
+  float: left;
+  width: 100%;
+}
