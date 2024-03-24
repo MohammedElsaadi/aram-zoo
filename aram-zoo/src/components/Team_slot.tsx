@@ -16,13 +16,12 @@ interface Team_slot_props {
 function Team_slot(props: Team_slot_props) {
   return (
     <div>
-        <h2>{props.title}</h2>
-        <h4>{props.team.length}/5</h4>
+        <h2>{props.title} - {props.team.length}/5</h2>
         {props.team.map(player => (
         <div key={player.id} className='PlayerCard'>
-            <button onClick={() => props.changeTeam(player)}>change team</button>
+            <button className='changeButton' onClick={() => props.changeTeam(player)}>change team</button>
             <span>{player.name} - {player.champions.length} Champs</span>
-            <button onClick={() => props.removeTeam(player)}>remove</button>
+            <button className='removeButton' onClick={() => props.removeTeam(player)}>remove</button>
         </div>
       ))}
     </div>

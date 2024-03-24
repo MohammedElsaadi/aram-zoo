@@ -1,37 +1,139 @@
 .AppContainer {
   text-align: center;
-  background-color: tomato;
-  height: 100%;
+  background-color: white;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+.teamContainer {
+  display: flex;
+  justify-content: center;
 }
 
 .team {
-  float: left;
+  flex: 1;
   width: 50%;
+  border: 2px solid black;
+  margin: 10px;
 }
 
-.players {
-  float: left;
-  width: 100%;
+.team1Area {
+  background-color: #08D9D6;
+  border-radius: 12px;
+}
+
+.team2Area {
+  background-color: #FF2E63;
+  border-radius: 12px;
+}
+
+.ChampionPool{
+  display: flex;
+  justify-content: center;
 }
 
 .pools {
-  float: left;
+  flex: 1;
   width: 50%;
+  border: 2px solid black;
+  margin: 10px;
+  line-height: 0;
 }
 
 .PlayerCard {
-  /* width: 20%;
-  height: 10%; */
-
+  background-color:white;
+  box-shadow: 7.5px 7.5px black;
+  font-weight: bold;
+  color: black;
+  display: inline-block;
+  border: 5px solid gray;
+  border-radius: 12px;
+  margin: 1rem;
+  padding: 0.25rem;
   button{
-    margin: 1rem;
+    width: 70px;
+    border-style: solid;
+    border-radius: 12px;
+    height: 35px;
+    color: white;
+    padding: 0.25rem;
+    margin: 0.5rem;
+  }
+
+  .team1Button{
+    background-color: #08D9D6;
+  }
+  .team2Button{
+    background-color:#FF2E63
+  }
+  .changeButton{
+    font-size: 12px;
+    text-wrap:nowrap;
+    width: 85px;
+    color: white;
+    font-weight: bold;
+    background-color: #0cb383;
+  }
+  .removeButton{
+    background-color: crimson;
   }
 }
 
-.card {
+.generateContainer {
+display: block;
 }
 
-.generateContainer {
-  float: left;
-  width: 100%;
+.PlayerCreatorImage {
+  width: 50px;
+  margin: 5px;
+}
+
+.darken {
+  opacity: 25%;
+}
+
+.poolsButton{
+  height: 50px;
+  border-radius: 12px;
+  border: 5px solid black;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: seagreen;
+  color:white;
+}
+
+.checkBoxes {
+  display: block;
+}
+
+.inputText {
+  width: 230px;
+  padding: 16.5px 15px;
+}
+
+.GenerateButton {
+  height: 50px;
+  display: block;
+  margin: 5px;
+  border-radius: 12px;
+  border: 2px solid black;
+}
+
+.teamChampPics {
+  margin: 7px;
+  width: 100px;
+  box-shadow: 5px 5px black;
+  border-radius: 12px;
+}
+
+.createButton {
+  height: 50px;
+  border-radius: 12px;
+  border: 5px solid black;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: rgb(137, 137, 137)0;
+  color:black;
 }
