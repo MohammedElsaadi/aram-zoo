@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/aram-zoo/static/css/main.230656b8.css",
+    "main.js": "/aram-zoo/static/js/main.4bfdd51b.js",
+    "static/js/453.0f0ce386.chunk.js": "/aram-zoo/static/js/453.0f0ce386.chunk.js",
+    "index.html": "/aram-zoo/index.html",
+    "main.230656b8.css.map": "/aram-zoo/static/css/main.230656b8.css.map",
+    "main.4bfdd51b.js.map": "/aram-zoo/static/js/main.4bfdd51b.js.map",
+    "453.0f0ce386.chunk.js.map": "/aram-zoo/static/js/453.0f0ce386.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.230656b8.css",
+    "static/js/main.4bfdd51b.js"
+  ]
+}
