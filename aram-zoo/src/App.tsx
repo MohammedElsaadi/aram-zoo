@@ -210,21 +210,13 @@ function App() {
   return (
     <div className="AppContainer">
         <h1>ARAM ZOO</h1>
-        <h2>10-Man Custom Aram Roller</h2>
-        <label>Number of re-rolls per person: </label>
-        <select value={rerolls} onChange={handleSelectChange}>
-          <option>0</option>
-          <option>1</option>
-          <option selected>2</option>
-          <option>3</option>
-        </select>
+        <h4>10-Man Custom Aram Roller</h4>
+        
       <div className='App-Body'>
-          <FormControlLabel className='checkBoxes' control={<Checkbox onChange={() => setUseAramChamps(!useAramChamps)} defaultChecked />} label="Include ARAM Default Champions (65 Champs)" />
         <div className='players'>
           <h2>Players</h2>
-          <Player_pool players={players} moveTeam1={moveTeam1} moveTeam2={moveTeam2}></Player_pool>
+          <Player_pool players={players} moveTeam1={moveTeam1} moveTeam2={moveTeam2} handlePlayerCreator={handlePlayerCreator}></Player_pool>
         </div>
-        <button className='createButton' onClick={(event) => handlePlayerCreator(event)}>Create Player</button>
               <Modal
                 open={showPlayerCreator}
                 onClose={handlePlayerCreator}
@@ -236,7 +228,7 @@ function App() {
                   </FormControl>
                   {allChampIcons}
                   <button className='GenerateButton' onClick={() => navigator.clipboard.writeText(handleGenerateJSON())}>Generate JSON</button>
-                  <a href='https://github.com/MohammedElsaadi/aram-zoo/edit/main/aram-zoo/src/resources/player_data.json'>Edit Player Data</a>
+                  <a href='https://github.com/MohammedElsaadi/aram-zoo/edit/main/aram-zoo/src/resources/player_data.json'>Commit Player Data to Github</a>
                 </Box>
               </Modal>
         <div className='teamContainer'>
@@ -257,11 +249,21 @@ function App() {
             }}>
               Generate Team Champion Pools
           </button>
+          <label className="rerollLabel">Number of re-rolls per person: </label>
+        <select className="rerollSelect" value={rerolls} onChange={handleSelectChange}>
+          <option>0</option>
+          <option>1</option>
+          <option selected>2</option>
+          <option>3</option>
+        </select>
+        <FormControlLabel className='checkBoxes' control={<Checkbox onChange={() => setUseAramChamps(!useAramChamps)} defaultChecked />} label="Include ARAM Default Champions (65 Champs)" />
         </div>
         <div className='ChampionPool'>
           <div className='pools team1Area'>
+            <div>
             <h2> Team 1 Champion Pool</h2>
             {team1ChampIcons}
+            </div>
           </div>
           <div className='pools team2Area'>
             <h2> Team 2 Champion Pool</h2>
