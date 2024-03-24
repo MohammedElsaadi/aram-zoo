@@ -231,6 +231,8 @@ function App() {
                   <a href='https://github.com/MohammedElsaadi/aram-zoo/edit/main/aram-zoo/src/resources/player_data.json'>Commit Player Data to Github</a>
                 </Box>
               </Modal>
+        <div className='teams'>
+        <h2>Teams</h2>
         <div className='teamContainer'>
           <div className='team team1Area'>
             <Team_slot title="Team 1" team={team1} removeTeam={removeTeam} changeTeam={changeTeam}></Team_slot>
@@ -239,8 +241,12 @@ function App() {
             <Team_slot title="Team 2" team={team2} removeTeam={removeTeam} changeTeam={changeTeam}></Team_slot>
           </div>
         </div>
-
+        </div>
+        <div className='generateAndPoolsContainer'>
+        <h2>Champion Pools</h2>
+        <div className='generateAndPoolsArea'>
         <div className='generateContainer'>
+        <div className='generateArea'>
           <button className='poolsButton' onClick={() => {
             setSelectedChamps(selectedChamps => new Array());
             setTeam1Champs(team1Champs => new Array());
@@ -258,17 +264,24 @@ function App() {
         </select>
         <FormControlLabel className='checkBoxes' control={<Checkbox onChange={() => setUseAramChamps(!useAramChamps)} defaultChecked />} label="Include ARAM Default Champions (65 Champs)" />
         </div>
-        <div className='ChampionPool'>
-          <div className='pools team1Area'>
-            <div>
+        </div>
+        <div className='pools'>
+        <div className='ChampionPoolContainer'>
+          <div className='pool team1Area'>
+            <div className='iconContainer'>
             <h2> Team 1 Champion Pool</h2>
             {team1ChampIcons}
             </div>
           </div>
-          <div className='pools team2Area'>
+          <div className='pool team2Area'>
+            <div className='iconContainer'>
             <h2> Team 2 Champion Pool</h2>
             {team2ChampIcons}
+            </div>
           </div>
+      </div>
+      </div>
+      </div>
       </div>
       </div>
     </div>
