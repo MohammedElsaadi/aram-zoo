@@ -193,7 +193,7 @@ function App() {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 680,
+    width: {sm: '90%', md:680},
     height: 400,
     borderRadius: '12px',
     bgcolor: 'background.paper',
