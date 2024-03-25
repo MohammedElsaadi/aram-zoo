@@ -108,12 +108,7 @@ html {
   border: 2px solid black;
   min-width: 40%;
 
-  @media (max-width: 800px) {
-    margin-bottom: 1rem;
-    margin-right: 0;
-    min-width: 100%;
-    padding-bottom: 0.5rem;
-  }
+  
 
   .PlayerCard {
     @media (max-width: 1200px) {
@@ -135,12 +130,6 @@ html {
   padding-bottom: 2rem;
   margin-left: 1.5rem;
   min-width: 40%;
-  
-  @media (max-width: 800px) {
-    margin: 0;
-    min-width: 100%;
-    padding-bottom: 0.5rem;
-  }
 
   .PlayerCard {
     @media (max-width: 1200px) {
@@ -151,6 +140,17 @@ html {
         margin: 0.5rem 0;
       }
     }
+  }
+}
+
+@media (max-width: 800px) {
+  .team1Area,.team2Area{
+    margin: 0;
+    min-width: 100%;
+    padding-bottom: 0.5rem;
+  }
+  .team1Area {
+    margin-bottom: 1rem;
   }
 }
 
