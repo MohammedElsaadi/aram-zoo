@@ -318,6 +318,12 @@ html {
   border-radius: 6px;
 }
 
+.PlayerCreatorIconContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .darken {
   opacity: 25%;
 }
@@ -364,6 +370,13 @@ html {
     @media (max-width: 800px) {
       width: 50px;
     }
+}
+
+.poolwrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .createButton {

@@ -4,14 +4,14 @@ import Player_pool from './components/Player_pool';
 import PlayerData from './resources/player_data.json';
 import Team_slot from './components/Team_slot';
 import AlwaysAvailableChamps from './resources/aram_pool.json';
-import AllChamps from './resources/all_champs.json';
-import FormGroup from '@mui/material/FormGroup';
+  import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { FormControl, TextField } from '@mui/material';
+import useChampInfo, { Champion } from './hooks/useChampInfo';
 
 
 interface PlayerCard {
@@ -19,11 +19,9 @@ interface PlayerCard {
   name: string;
   champions: string[];
 }
-
-// interface AramChamps {
-//   alwaysAvailable: string[];
-// }
-
+const SPRITE_WIDTH = 480;
+const SPRITE_HEIGHT = 144;
+const SCALE = 1;
 function App() {
 
   const [players, setPlayers] = useState<PlayerCard[]>(PlayerData);
@@ -33,15 +31,14 @@ function App() {
   const [team1Champs, setTeam1Champs] = useState(new Array());
   const [team2Champs, setTeam2Champs] = useState(new Array());
   const [rerolls, setRerolls] = useState(2);
-  const [selectedChamps, setSelectedChamps] = useState(new Array());
-  const [allChamps, setAllChamps] = useState(AllChamps)
   const [showPlayerCreator, setShowPlayerCreator] = useState(false);
   const [useAramChamps, setUseAramChamps] = useState(true);
-  const [useFreeChamps, setUseFreeChamps] = useState(true);
   const [playerCreatorSelectedChamps, setPlayerCreatorSelectedChamps] = useState(new Array());
   const [playerCreatorName, setPlayerCreatorName] = useState("");
+  const { champions, loading, version } = useChampInfo();
+
   let totalChamps = new Array();
-  
+
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     const parsedValue = parseInt(value,10)
@@ -49,7 +46,7 @@ function App() {
   };
 
   const handlePlayerCreator = (event: React.MouseEvent) => {
-    setPlayerCreatorSelectedChamps(playerCreatorSelectedChamps => allChamps);
+    setPlayerCreatorSelectedChamps(playerCreatorSelectedChamps => champions.map((champ)=> champ.name));
     setPlayerCreatorName("");
     setShowPlayerCreator(!showPlayerCreator);
   };
@@ -121,9 +118,7 @@ function App() {
 
   const generateChampionPools = () => {
     let team1ChampPool = generateUniqueChampsForEachPlayer(team1);
-    // setSelectedChamps(prevSelectedChamps => [...prevSelectedChamps, team1ChampPool]);
     let team2ChampPool = generateUniqueChampsForEachPlayer(team2);
-    // setSelectedChamps(prevSelectedChamps => [...prevSelectedChamps, team1ChampPool]);
     setTeam1Champs(team1Champs => [...team1Champs, ...team1ChampPool]);
     setTeam2Champs(team2Champs => [...team2Champs, ...team2ChampPool]);
   };
@@ -178,9 +173,8 @@ function App() {
   };
   
 
-  var team1ChampIcons = team1Champs.map(champ => <img className="teamChampPics" src={"https://ddragon.leagueoflegends.com/cdn/14.6.1/img/champion/" +champ +".png"}></img>);
-  var team2ChampIcons = team2Champs.map(champ => <img className="teamChampPics" src={"https://ddragon.leagueoflegends.com/cdn/14.6.1/img/champion/" +champ +".png"}></img>);
-  var allChampIcons = allChamps.map(champ => <img className="PlayerCreatorImage" onClick={(event) => handleImageClick(event, champ)} src={"https://ddragon.leagueoflegends.com/cdn/14.6.1/img/champion/" +champ +".png"}></img>);
+  // var team1ChampIcons = team1Champs.map(champ => <img className="teamChampPics" src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champ}.png`}></img>);
+  var team2ChampIcons = team2Champs.map(champ => <img className="teamChampPics" src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champ}.png`}></img>);
 
   //note to future self: if the player creator is hidden then the state of the images becomes reset because we hide it by setting to null
   //so we need to make sure to also update the playercreator selected champs
@@ -226,7 +220,8 @@ function App() {
                   <FormControl sx={formStyle}>
                     <TextField className='inputText' required id="outlined-basic" label="Username" variant="outlined" value={playerCreatorName} onChange={handlePlayerName}/>
                   </FormControl>
-                  {allChampIcons}
+                  <div className='PlayerCreatorIconContainer'>
+                  {champions.map(champ => <img className="PlayerCreatorImage" onClick={(event)=>handleImageClick(event, champ.name)} src={champ.imageUrl}></img>)}</div>
                   <button className='GenerateButton' onClick={() => navigator.clipboard.writeText(handleGenerateJSON())}>Generate JSON</button>
                   <a href='https://github.com/MohammedElsaadi/aram-zoo/edit/main/aram-zoo/src/resources/player_data.json'>Commit Player Data to Github</a>
                 </Box>
@@ -248,7 +243,6 @@ function App() {
         <div className='generateContainer'>
         <div className='generateArea'>
           <button className='poolsButton' onClick={() => {
-            setSelectedChamps(selectedChamps => new Array());
             setTeam1Champs(team1Champs => new Array());
             setTeam2Champs(team2Champs => new Array());
             generateChampionPools();
@@ -269,14 +263,15 @@ function App() {
         <div className='ChampionPoolContainer'>
           <div className='pool team1Area'>
             <div className='iconContainer'>
-            <h2> Team 1 Champion Pool</h2>
-            {team1ChampIcons}
+            <h2> Team 1 Champs</h2><div className='poolwrap'>
+              {champions.filter(c=>team1Champs.includes(c.name)).map(champ => <img className="teamChampPics" src={champ.imageUrl}></img>)}
+            </div>
             </div>
           </div>
           <div className='pool team2Area'>
             <div className='iconContainer'>
-            <h2> Team 2 Champion Pool</h2>
-            {team2ChampIcons}
+            <h2> Team 2 Champs</h2>
+              {champions.filter(c=>team2Champs.includes(c.name)).map(champ => <img className="teamChampPics" src={champ.imageUrl}></img>)}
             </div>
           </div>
       </div>
